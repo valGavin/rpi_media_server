@@ -1,0 +1,17 @@
+{
+  "name": "rpi_media_server",
+  "version": "1.0.0",
+  "description": "Raspberry Pi 4B+ Media Server",
+  "main": "backend/server.js",
+  "scripts": {
+    "backend-install": "npm install --prefix backend",
+    "frontend-install": "npm install --prefix frontend",
+    "start": "node backend/server.js",
+    "backend": "nodemon backend/server.js",
+    "frontend": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run backend\" \"npm run frontend\""
+  },
+  "keywords": [],
+  "author": "Win Roedily",
+  "license": "ISC"
+}

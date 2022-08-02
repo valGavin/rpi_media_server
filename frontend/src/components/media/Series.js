@@ -51,7 +51,7 @@ class Series extends Component {
       );
     } else {
       return (
-        <Link to="/media" className="btn-flat waves-effect">
+        <Link to="/" className="btn-flat waves-effect">
           <i className="material-icons left">keyboard_backspace</i>
           Back to media list
         </Link>
@@ -62,11 +62,33 @@ class Series extends Component {
   gridContent = () => {
     let series, seasons = [];
     return this.state.episodes.map((res) => {
-      if (this.state.series == null && !series.includes(res.series)) {
+      if (res.series === this.state.series) {  // User selected a series.
+        if (res.season === this.state.season) {  // User selected a season.
+          return (  // Show the list of episodes from the associated season and series
+            <div className="col s3">
+              <img src={""/* TODO: Replace with episode icon.*/} alt={res.title} />
+              {/* TODO: Add buttons to download or play.*/}
+            </div>
+          );
+        } else if (this.state.season == null && !seasons.includes(res.season)) { // User does not select any season yet.
+          seasons.push(res.season);
+          return (  // Show the list of seasons from the associated series
+            <div className="col s3">
+              <label onChange={(e) => this.onClickDirectory(this.state.series, res.season, e)} htmlFor="season">
+                <input type="button" id="season" hidden />
+                <img src={res.icon.season} alt={res.season} />
+              </label>
+            </div>
+          );
+        }
+      } else if (this.state.series == null && !series.includes(res.series)) { // User does not select any series yet
         series.push(res.series);
-        return (
+        return (  // Show the list of series
           <div className="col s3">
-            {/* TODO: Finish this grid creation.*/}
+            <label onChange={(e) => this.onClickDirectory(res.series, "", e)} htmlFor="series">
+              <input type="button" id="series" hidden />
+              <img src={res.icon.series} alt={res.series} />
+            </label>
           </div>
         );
       }
@@ -76,12 +98,15 @@ class Series extends Component {
   render() {
     return (
       <div className="container">
-        <div className="row" style={{ marginTop: "4rem" }}>
+        <div style={{ marginTop: "4rem" }}>
           <div className="col s3 offset-s9">
-            {this.backArrow}
+            {this.backArrow()}
           </div>
+          {this.gridContent()}
         </div>
       </div>
     );
   }
 }
+
+export default Series;

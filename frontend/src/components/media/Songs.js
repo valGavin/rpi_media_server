@@ -18,6 +18,15 @@ class Songs extends Component {
       .catch((error) => { console.log(error); });
   }
 
+  backArrow = () => {
+    return (
+      <Link to="/" className="btn-flat waves-effect">
+        <i className="material-icons left">keyboard_backspace</i>
+        Back to media list
+      </Link>
+    );
+  }
+
   /**
    * Gather the songs from the component's state, and create rows from that.
    *
@@ -42,10 +51,7 @@ class Songs extends Component {
       <div className="container">
         <div style={{ marginTop: "4rem"}}>
           <div className="col s3 offset-s9">
-            <Link to="/media" className="btn-flat waves-effect">
-              <i className="material-icons left">keyboard_backspace</i>
-              Back to media list
-            </Link>
+            {this.backArrow()}
           </div>
           <table className="highlight">
             <thead><tr>
@@ -55,7 +61,7 @@ class Songs extends Component {
               <th>Year</th>
               <th>Action</th>
             </tr></thead>
-            <tbody>{this.tableContent}</tbody>
+            <tbody>{this.tableContent()}</tbody>
           </table>
         </div>
       </div>

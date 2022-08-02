@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-class Series extends Component {
+class Movie extends Component {
   constructor(props) {
     super(props);
-    this.state = { title: "", episode: "", season: "", series: "", year: "", genre: "", path: "", icon: "" };
+    this.state = { title: "", year: "", genre: "", sequel: "", path: "", icon: "" };
   }
 
   /**
@@ -21,17 +21,15 @@ class Series extends Component {
   onSubmit = e => {
     e.preventDefault();  // Prevent re-loading the page upon submission
 
-    const newEpisode = {
+    const newMovie = {
       title: this.state.title,
-      episode: this.state.episode,
-      season: this.state.season,
-      series: this.state.series,
       year: this.state.year,
       genre: this.state.genre,
+      sequel: this.state.sequel,
       path: this.state.path,
       icon: this.state.icon };
 
-    console.log(newEpisode);
+    console.log(newMovie);
   };
 
   render() {
@@ -47,10 +45,10 @@ class Series extends Component {
             </Link>
             <div className="col s12" style={{ paddingLeft: "11.250px" }}>
               <h4>
-                <b>Add an episode</b> below
+                <b>Add a movie</b> below
               </h4>
               <p className="grey-text text-darken-1">
-                Add a <Link to="/movies/upload">movie</Link> or a <Link to="/series/upload">song</Link> instead?
+                Add a <Link to="/movies/upload">song</Link> or an <Link to="/series/upload">episode</Link> instead?
               </p>
             </div>
             <form noValidate onSubmit={this.onSubmit}>
@@ -62,35 +60,6 @@ class Series extends Component {
                   id="title"
                   type="text" />
                 <label htmlFor="title">Title</label>
-              </div>
-              <div className="input-field col s12">
-                <input
-                  onChange={this.onChange}
-                  value={this.state.episode}
-                  error={errors.episode}
-                  id="episode"
-                  type="number"
-                  min="1" />
-                <label htmlFor="episode">Episode</label>
-              </div>
-              <div className="input-field col s12">
-                <input
-                  onChange={this.onChange}
-                  value={this.state.season}
-                  error={errors.season}
-                  id="season"
-                  type="number"
-                  min="1" />
-                <label htmlFor="season">Season</label>
-              </div>
-              <div className="input-field col s12">
-                <input
-                  onChange={this.onChange}
-                  value={this.state.series}
-                  error={errors.series}
-                  id="series"
-                  type="text" />  {/* TODO: Create a drop-down list of the series available in the database.*/}
-                <label htmlFor="series">Series</label>
               </div>
               <div className="input-field col s12">
                 <input
@@ -115,11 +84,20 @@ class Series extends Component {
               <div className="input-field col s12">
                 <input
                   onChange={this.onChange}
+                  value={this.state.sequel}
+                  error={errors.sequel}
+                  id="sequel"
+                  type="text" />  {/* TODO: Create a drow-down list of the sequels available in the database.*/}
+                <label htmlFor="sequel">Sequel</label>
+              </div>
+              <div className="input-field col s12">
+                <input
+                  onChange={this.onChange}
                   value={this.state.path}
                   error={errors.path}
                   id="path"
                   type="file" />  {/* TODO: Specify the acceptable audio file extensions.*/}
-                <label htmlFor="path">Audio file</label>
+                <label htmlFor="path">Video file</label>
               </div>
               <div className="input-field col s12">
                 <input
@@ -150,4 +128,4 @@ class Series extends Component {
   }
 }
 
-export default Series;
+export default Movie;

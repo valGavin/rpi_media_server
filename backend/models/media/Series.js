@@ -8,9 +8,12 @@ const SeriesSchema = new Schema({
   season: { type: Number, min: 1, required: true },
   series: { type: String, required: true },
   year: { type: Number, min: 1888, required: true },
-  icon: { type: String },
   path: { type: String },
-  genre: { type: String }
+  genre: { type: String },
+  icon: {
+    series: { type: String },
+    season: { type: String }
+  }
 });
 
 module.exports = Series = mongoose.model("series", SeriesSchema);

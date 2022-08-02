@@ -11,7 +11,7 @@ class Navbar extends Component {
               to="/"
               style={{ fontFamily: "monospace" }}
               className="col s5 brand-logo center black-text">
-              <i className="material-icons">RPi</i> Media Server
+              RPi Media Server
             </Link>
           </div>
         </nav>

@@ -32,7 +32,7 @@ class Movies extends Component {
   backArrow = () => {
     if (this.state.sequel == null) {
       return (
-        <Link to="/media" className="btn-flat waves-effect">
+        <Link to="/" className="btn-flat waves-effect">
           <i className="material-icons left">keyboard_backspace</i>
           Back to media list
         </Link>
@@ -63,13 +63,13 @@ class Movies extends Component {
             <img src={res.icon} alt={res.title} />
             {/* TODO: Add buttons to download or play.*/}
           </div>);
-      } else if (res.sequel != null || res.sequel !== '' && !sequels.includes(res.sequel)) {
+      } else if (res.sequel != null && !sequels.includes(res.sequel)) {
         sequels.push(res.sequel);
         return (
           <div className="col s3">
             <label onChange={(e) => this.onClickSequel(res.sequel, e)} htmlFor="sequel">
               <input type="button" id="sequel" hidden />
-              <img src={/* TODO: Replace with sequel icon.*/} alt={res.sequel} />
+              <img src={""/* TODO: Replace with sequel icon.*/} alt={res.sequel} />
             </label>
           </div>
         );
@@ -80,11 +80,11 @@ class Movies extends Component {
   render() {
     return (
       <div className="container">
-        <div className="row" style={{ marginTop: "4rem" }}>
+        <div style={{ marginTop: "4rem" }}>
           <div className="col s3 offset-s9">
-            {this.backArrow}
+            {this.backArrow()}
           </div>
-          {this.gridContent}
+          {this.gridContent()}
         </div>
       </div>
     );

@@ -40,15 +40,6 @@ class Landing extends Component {
                 Series
               </Link>
             </div>
-            <br />
-            <div className="col s12">
-              <Link
-                to="/login"
-                style={{ width: "140px", borderRadius: "3px", letterSpacing: "1.5px" }}
-                className="btn btn-large btn-flat waves-effect white black-text">
-                Admin Login
-              </Link>
-            </div>
           </div>
         </div>
       </div>

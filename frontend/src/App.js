@@ -1,25 +1,21 @@
-import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import Navbar from "./components/layout/Navbar";
-import Landing from "./components/layout/Landing";
-import Songs from "./components/media/Songs";
-import Movies from "./components/media/Movies";
-import Series from "./components/media/Series";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./app/components/layout/Navbar";
+import Landing from "./app/components/layout/Landing";
+import Songs from "./app/components/media/music/Songs";
 
-class App extends Component {
-  render() {
-    return (
-      <Router>
-        <div className="App">
-          <Navbar />
-          <Route exact path="/" component={Landing} />
-          <Route exact path="/musics" component={Songs} />
-          <Route exact path="/movies" component={Movies} />
-          <Route exact path="/series" component={Series} />
-        </div>
-      </Router>
-    );
-  }
+function App() {
+  return (
+    <Router>
+      <div className="App">
+        <Navbar />
+        <Routes>
+          <Route exact path="/" element={<Landing />} />
+          <Route exact path="/musics" element={<Songs />} />
+        </Routes>
+      </div>
+    </Router>
+  );
 }
 
 export default App;

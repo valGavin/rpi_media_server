@@ -4,6 +4,10 @@ import { useDispatch } from "react-redux";
 import { selectSongs, selectPlaylistState, triggerPlaylist } from "../../../../features/songPlaylist";
 
 function Player() {
+  const currentTrack = document.createElement("audio");
+  currentTrack.addEventListener("ended", () => trackNavigation("NEXT"));
+
+  const [track] = useState(currentTrack);
   const [paused, setPaused] = useState(true);
   const [playing, setPlaying] = useState({
     id: 0, song: { icon: "", title: "", artist: "", album: "", genre: "", year: "", path: "" } });
@@ -12,9 +16,20 @@ function Player() {
   const open = useSelector(selectPlaylistState);
   const dispatch = useDispatch();
 
-  useEffect(() => {}, [playing]);
+  useEffect(() => {
+    if (playing.song.path)
+      track.src = playing.song.path;
+      track.load();
+      track.play()
+        .then(() => setPaused(false))
+        .catch((error) => console.error(error));
+  }, [playing]);
 
   const trackNavigation = (control) => {
+    // Stop the currently playing track
+    track.pause();
+    track.src = "";
+
     let id = playing.id;
     let song = playlist;
     if (control === "PREV")
@@ -35,11 +50,12 @@ function Player() {
         icon: song.icon, title: song.title, artist: song.artist, album: song.album,
         genre: song.genre, year: song.year, path: song.path } });
     } else if (control === "PAUSE") {
+      track.pause();
       setPaused(true);
-      // TODO: Pause the playing track
-    } else if (control === "PLAY" && playing.song.path !== "") {
-      setPaused(false);
-      // TODO: Resume the paused track
+    } else if (control === "PLAY" && playing.song.path) {
+      track.play()
+        .then(() => setPaused(false))
+        .catch((error) => console.error(error));
     }
   }
 

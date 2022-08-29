@@ -33,7 +33,7 @@ function Playlist() {
   return (
     <div className="row" style={!open || playlist.length < 1 ? {
       height: "0%", width: "80%", position: "relative", zIndex: "2",
-      bottom: "30px", overflowY: "hidden", visibility: "hidden"} : {
+      bottom: "30px", overflowY: "hidden", display: "none"} : {
       height: "50%", width: "80%", position: "sticky", zIndex: "2",
       bottom: "100px", overflowY: "hidden", transition: ".5s" }}>
       <div className="col s6 offset-s6" style={{ background: "white", border: "2px solid" }}>

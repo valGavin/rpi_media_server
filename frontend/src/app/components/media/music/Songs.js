@@ -50,11 +50,11 @@ function Songs() {
     <div>
       <div className="container">
         <div style={{ top: "4rem", position: "sticky", zIndex: "2", background: "white" }} className="row">
-          <div className="input-field col s5 offset-s3 push-4">
+          <div className="input-field col s5 offset-s3 push-s4">
             <input id="search" type="search" onChange={e => { setParam({ page: 0, query: e.target.value }); }} />
             <label htmlFor="search">Search</label>
           </div>
-          <div className="col s4 pull-s9" style={{ marginTop: "1.4rem" }}>
+          <div className="col s4 pull-s8" style={{ marginTop: "1.4rem" }}>
             <Link to="/" className="btn-flat waves-effect">
               <i className="material-icons left">keyboard_backspace</i>
               Back to media list
